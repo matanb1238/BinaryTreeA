@@ -3,9 +3,8 @@
 using namespace std;
 
 namespace ariel{
-    template<class T>
+    template<typename T>
     class BinaryTree{
-        // using iterator = typename std::list<T>::iterator;
         struct Node{
             T _data;
             Node* right;
@@ -14,7 +13,6 @@ namespace ariel{
         };
 
         Node* _root;
-        list<T> allNodes;
 
         public:
             class iterator{
@@ -23,42 +21,39 @@ namespace ariel{
                 public:
                     iterator(Node *n = nullptr) : root(n){}
                     int size();
-                    virtual iterator& operator++();
-                    bool operator!=(const iterator);
-                    iterator operator*();
-                    T* operator->();
-                    friend ostream& operator<<(std::ostream& out, const iterator it);
+                    virtual iterator& operator++(){return *this;}
+                    bool operator!=(const iterator){return false;}
+                    T& operator*(){return root->_data;}
+                    T* operator->(){return &(root->_data);}
+                    // friend ostream& operator<<(ostream& out, const iterator it){return out;}
             };
             class PreIterator : public iterator{
                 public:
-                    iterator& operator++();
+                    iterator& operator++(){return *this;}
             };
             class InIterator : public iterator{
                 public:
-                    iterator& operator++();
+                    iterator& operator++(){return *this;}
             };
             class PostIterator : public iterator{
                 public:
-                    iterator& operator++();
+                    iterator& operator++(){return *this;}
             };
-            BinaryTree& add_root(T r);
-            BinaryTree& add_right(T n, T v);
-            BinaryTree& add_left(T n, T v);
+            BinaryTree& add_root(T r){return *this;}
+            BinaryTree& add_right(T n, T v){return *this;}
+            BinaryTree& add_left(T n, T v){return *this;}
 
-            typename list<T>::iterator begin();
-            typename list<T>::iterator end();
+            iterator begin(){return iterator(_root);}
+            iterator end(){return iterator(nullptr);}
 
-            PreIterator begin_preorder();
-            PreIterator end_preorder();
+            iterator begin_preorder(){return iterator(_root);}
+            iterator end_preorder(){return iterator(nullptr);}
 
-            InIterator begin_inorder();
-            InIterator end_inorder();
+            iterator begin_inorder(){return iterator(_root);}
+            iterator end_inorder(){return iterator(nullptr);}
 
-            PostIterator begin_postorder();
-            PostIterator end_postorder();
-            template<typename E> friend ostream& operator<<(std::ostream& out, const BinaryTree<E>& bt);
+            iterator begin_postorder(){return iterator(_root);}
+            iterator end_postorder(){return iterator(nullptr);}
+            friend ostream& operator<<(std::ostream& out, const BinaryTree<T>& bt){return out;}
     };
-    template<typename T> BinaryTree<T>& BinaryTree<T>::add_root(T r) {return *this;}
-    template<typename T> BinaryTree<T>& BinaryTree<T>::add_right(T n, T v) {return *this;}
-    template<typename T> BinaryTree<T>& BinaryTree<T>::add_left(T n, T v) {return *this;}
 }

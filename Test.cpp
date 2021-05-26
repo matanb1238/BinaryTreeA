@@ -27,9 +27,13 @@ TEST_CASE("Add Check"){
     //Now with the correct types
     BinaryTree<double> b3;
     CHECK_NOTHROW(b.add_root(1.0));
+    CHECK_NOTHROW(b.add_right(1.0, 3.0));
+    CHECK_NOTHROW(b.add_left(1.0, 2.0));
 
     BinaryTree<string> b4;
     CHECK_NOTHROW(b.add_root('1'));
+    CHECK_NOTHROW(b.add_right('1', 'r'));
+    CHECK_NOTHROW(b.add_left('1', 'l'));
 }
 TEST_CASE("PreOrder"){
     //int
