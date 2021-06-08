@@ -42,14 +42,14 @@ namespace ariel{
                         ++index;
                         return *this;
                     }
-                    T& operator*(){return list.at(index)->_data;}
-                    T* operator->(){return &(list.at(index)->_data);}
                     bool operator==(const iterator &it) const {
                         return list.at(index) == it.list.at(it.index);
                     }
                     bool operator!=(const iterator &it) const {
                         return !(*this == it);
                     }
+                    T& operator*(){return list.at(index)->_data;}
+                    T* operator->(){return &(list.at(index)->_data);}
             };
             class PreIterator : public iterator{
                 std::vector<Node*> list;
