@@ -122,7 +122,6 @@ namespace ariel{
                     n->right->_data = value;
                 }
                 // m.insert(pair<T, *Node>(*value, n->right));
-                //m.insert({*value, n->right});
                 return *this;
             }
             BinaryTree& add_left(const T& node, const T& value){
